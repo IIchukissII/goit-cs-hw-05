@@ -64,17 +64,16 @@ def visualize_top_words(result, top_n=10):
 
     # Створення графіка
     plt.figure(figsize=(10, 6))
-    plt.bar(words, counts, color='skyblue')
+    plt.barh(words, counts, color='skyblue')
     plt.xlabel('Frequency')
     plt.ylabel('Words')
     plt.title('Top {} Most Frequent Words'.format(top_n))
-    # plt.gca().invert_yaxis()  # Перевернути графік, щоб найбільші значення були зверху
+    plt.gca().invert_yaxis()  # Перевернути графік, щоб найбільші значення були зверху
     plt.show()
 
 
 if __name__ == '__main__':
-    # Вхідний текст для обробки
-    url = "https://gutenberg.net.au/ebooks01/0100021.txt"
+    # Книга Шерлок холмс
+    url = "https://www.gutenberg.org/cache/epub/1661/pg1661.txt"
     result = asyncio.run(map_reduce(url))
-    print(result)
     visualize_top_words(result)
